@@ -2,12 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.blog.winterio.com.cn/categories/</loc>
+    <loc>https://blog.winterio.com.cn/categories/</loc>
   </url><url>
-    <loc>https://www.blog.winterio.com.cn/series/</loc>
+    <loc>https://blog.winterio.com.cn/series/</loc>
   </url><url>
-    <loc>https://www.blog.winterio.com.cn/tags/</loc>
+    <loc>https://blog.winterio.com.cn/tags/</loc>
   </url><url>
-    <loc>https://www.blog.winterio.com.cn/</loc>
+    <loc>https://blog.winterio.com.cn/</loc>
   </url>
 </urlset>
