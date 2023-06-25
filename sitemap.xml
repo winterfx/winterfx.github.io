@@ -2,19 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.winterio.com.cn/posts/about/</loc>
-    <lastmod>2023-06-25T14:26:46+08:00</lastmod>
-  </url><url>
     <loc>https://blog.winterio.com.cn/posts/</loc>
-    <lastmod>2023-06-25T14:26:46+08:00</lastmod>
+    <lastmod>2023-06-25T16:07:28+08:00</lastmod>
   </url><url>
     <loc>https://blog.winterio.com.cn/</loc>
+    <lastmod>2023-06-25T16:07:28+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/posts/life/%E4%B8%8E%E5%87%A1%E5%AE%9D/</loc>
+    <lastmod>2023-06-25T16:07:28+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/tags/%E5%87%A1%E5%AE%9D/</loc>
+    <lastmod>2023-06-25T16:07:28+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/tags/</loc>
+    <lastmod>2023-06-25T16:07:28+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/posts/life/</loc>
+    <lastmod>2023-06-25T15:47:05+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/posts/tech/</loc>
+    <lastmod>2023-06-25T15:41:55+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/about/</loc>
     <lastmod>2023-06-25T14:26:46+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/tags/tool/</loc>
+    <lastmod>2023-06-25T13:43:07+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/posts/tech/tools/</loc>
+    <lastmod>2023-06-25T13:43:07+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.winterio.com.cn/archives/</loc>
   </url><url>
     <loc>https://blog.winterio.com.cn/categories/</loc>
   </url><url>
-    <loc>https://blog.winterio.com.cn/series/</loc>
+    <loc>https://blog.winterio.com.cn/search/</loc>
   </url><url>
-    <loc>https://blog.winterio.com.cn/tags/</loc>
+    <loc>https://blog.winterio.com.cn/series/</loc>
   </url>
 </urlset>
