@@ -2,44 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Winter&#39;s Blog</title>
-    <link>https://github.com/winterfx/winterfx.github.io/en/</link>
+    <link>https://blog.winterio.com.cn/en/</link>
     <description>Recent content on Winter&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 07 Aug 2023 17:41:49 +0800</lastBuildDate><atom:link href="https://github.com/winterfx/winterfx.github.io/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Aug 2023 17:41:49 +0800</lastBuildDate><atom:link href="https://blog.winterio.com.cn/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI_Ideathon</title>
-      <link>https://github.com/winterfx/winterfx.github.io/en/posts/life/ai_ideathon/</link>
+      <link>https://blog.winterio.com.cn/en/posts/life/ai_ideathon/</link>
       <pubDate>Mon, 07 Aug 2023 17:41:49 +0800</pubDate>
       
-      <guid>https://github.com/winterfx/winterfx.github.io/en/posts/life/ai_ideathon/</guid>
+      <guid>https://blog.winterio.com.cn/en/posts/life/ai_ideathon/</guid>
       <description>公司举办ai contest,其中一项是ideathon,从idea到ppt，做的过程还挺欢乐的，主打一个搞笑，哈哈哈。上传一下video，也</description>
     </item>
     
     <item>
       <title>IosMDM的各种证书</title>
-      <link>https://github.com/winterfx/winterfx.github.io/en/posts/tech/iosmdm%E7%9A%84%E5%90%84%E7%A7%8D%E8%AF%81%E4%B9%A6/</link>
+      <link>https://blog.winterio.com.cn/en/posts/tech/iosmdm%E7%9A%84%E5%90%84%E7%A7%8D%E8%AF%81%E4%B9%A6/</link>
       <pubDate>Thu, 20 Jul 2023 15:10:54 +0800</pubDate>
       
-      <guid>https://github.com/winterfx/winterfx.github.io/en/posts/tech/iosmdm%E7%9A%84%E5%90%84%E7%A7%8D%E8%AF%81%E4%B9%A6/</guid>
+      <guid>https://blog.winterio.com.cn/en/posts/tech/iosmdm%E7%9A%84%E5%90%84%E7%A7%8D%E8%AF%81%E4%B9%A6/</guid>
       <description>之前在做ios mdm的时候发现涉及到一些证书和签名的问题，现在在这里总结一下，在使用ios mdm的时候需要准备的证书。 MDM Vendor Certificate 这个证书需要自己</description>
     </item>
     
     <item>
       <title>🙋🏻‍♂️Me</title>
-      <link>https://github.com/winterfx/winterfx.github.io/en/about/</link>
+      <link>https://blog.winterio.com.cn/en/about/</link>
       <pubDate>Sun, 25 Jun 2023 14:26:46 +0800</pubDate>
       
-      <guid>https://github.com/winterfx/winterfx.github.io/en/about/</guid>
+      <guid>https://blog.winterio.com.cn/en/about/</guid>
       <description>关于我 英文名: Winter Wang 职业: 程序员</description>
     </item>
     
     <item>
       <title>Tools</title>
-      <link>https://github.com/winterfx/winterfx.github.io/en/posts/tech/tools/</link>
+      <link>https://blog.winterio.com.cn/en/posts/tech/tools/</link>
       <pubDate>Sun, 25 Jun 2023 13:43:07 +0800</pubDate>
       
-      <guid>https://github.com/winterfx/winterfx.github.io/en/posts/tech/tools/</guid>
+      <guid>https://blog.winterio.com.cn/en/posts/tech/tools/</guid>
       <description>这是一篇会不断patch的文章，主要是记录比较好用的工具，希望形成一个自己的工具集合。 硬件 占个位 软件 coding Goland:go开发全家桶。 Vsco</description>
     </item>
     
