@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Life on Winter&#39;s Blog</title>
+    <link>https://github.com/winterfx/winterfx.github.io/en/posts/life/</link>
+    <description>Recent content in Life on Winter&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 25 Jun 2023 15:47:05 +0800</lastBuildDate><atom:link href="https://github.com/winterfx/winterfx.github.io/en/posts/life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI_Ideathon</title>
+      <link>https://github.com/winterfx/winterfx.github.io/en/posts/life/ai_ideathon/</link>
+      <pubDate>Mon, 07 Aug 2023 17:41:49 +0800</pubDate>
+      
+      <guid>https://github.com/winterfx/winterfx.github.io/en/posts/life/ai_ideathon/</guid>
+      <description>公司举办ai contest,其中一项是ideathon,从idea到ppt，做的过程还挺欢乐的，主打一个搞笑，哈哈哈。上传一下video，也</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tech on Winter&#39;s Blog</title>
+    <link>https://github.com/winterfx/winterfx.github.io/en/posts/tech/</link>
+    <description>Recent content in Tech on Winter&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 25 Jun 2023 15:41:55 +0800</lastBuildDate><atom:link href="https://github.com/winterfx/winterfx.github.io/en/posts/tech/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IosMDM的各种证书</title>
+      <link>https://github.com/winterfx/winterfx.github.io/en/posts/tech/iosmdm%E7%9A%84%E5%90%84%E7%A7%8D%E8%AF%81%E4%B9%A6/</link>
+      <pubDate>Thu, 20 Jul 2023 15:10:54 +0800</pubDate>
+      
+      <guid>https://github.com/winterfx/winterfx.github.io/en/posts/tech/iosmdm%E7%9A%84%E5%90%84%E7%A7%8D%E8%AF%81%E4%B9%A6/</guid>
+      <description>之前在做ios mdm的时候发现涉及到一些证书和签名的问题，现在在这里总结一下，在使用ios mdm的时候需要准备的证书。 MDM Vendor Certificate 这个证书需要自己</description>
+    </item>
+    
+    <item>
+      <title>Tools</title>
+      <link>https://github.com/winterfx/winterfx.github.io/en/posts/tech/tools/</link>
+      <pubDate>Sun, 25 Jun 2023 13:43:07 +0800</pubDate>
+      
+      <guid>https://github.com/winterfx/winterfx.github.io/en/posts/tech/tools/</guid>
+      <description>这是一篇会不断patch的文章，主要是记录比较好用的工具，希望形成一个自己的工具集合。 硬件 占个位 软件 coding Goland:go开发全家桶。 Vsco</description>
+    </item>
+    
+  </channel>
+</rss>
