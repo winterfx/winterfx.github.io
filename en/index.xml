@@ -6,7 +6,16 @@
     <description>Recent content on Winter&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 15 Mar 2024 10:55:53 +0800</lastBuildDate><atom:link href="https://blog.winterio.com.cn/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Mar 2024 17:46:48 +0800</lastBuildDate><atom:link href="https://blog.winterio.com.cn/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WinterAI</title>
+      <link>https://blog.winterio.com.cn/en/posts/tech/winterai/</link>
+      <pubDate>Fri, 15 Mar 2024 17:46:48 +0800</pubDate>
+      
+      <guid>https://blog.winterio.com.cn/en/posts/tech/winterai/</guid>
+      <description>把自己将chatgpt接入微信公众号的方法和步骤记录下来。 Background 由于受国内网络的限制，很多人并没有使用过chatgpt,能不能有一种简单的方式，</description>
+    </item>
+    
     <item>
       <title>Moonshot</title>
       <link>https://blog.winterio.com.cn/en/posts/tech/moonshot/</link>
