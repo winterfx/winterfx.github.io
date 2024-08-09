@@ -20,7 +20,7 @@ order: 4
 <link rel="stylesheet" href="https://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.css">
 
 <!-- GOES INTO BODY -->
-<div id="gh" data-login="wintefx"></div>
+<div id="gh" data-login="winterfx"></div>
 
 <!-- GOES INTO THE END OF BODY -->
 <script src="https://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.js"></script>
