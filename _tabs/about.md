@@ -17,10 +17,10 @@ order: 4
 * ...
 
 <!-- GOES INTO HEAD -->
-<link rel="stylesheet" href="http://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.css">
+<link rel="stylesheet" href="https://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.css">
 
 <!-- GOES INTO BODY -->
 <div id="gh" data-login="wintefx"></div>
 
 <!-- GOES INTO THE END OF BODY -->
-<script src="http://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.js"></script>
+<script src="https://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.js"></script>
