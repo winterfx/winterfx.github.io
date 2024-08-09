@@ -15,3 +15,12 @@ order: 4
 * 运动细胞发达
 * 会写点代码
 * ...
+
+<!-- GOES INTO HEAD -->
+<link rel="stylesheet" href="http://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.css">
+
+<!-- GOES INTO BODY -->
+<div id="gh" data-login="wintefx"></div>
+
+<!-- GOES INTO THE END OF BODY -->
+<script src="http://lengthylyova.pythonanywhere.com/static/gh-contrib-graph/gh.js"></script>
