@@ -8,12 +8,13 @@ If you want to customize the Chirpy theme, you can follow the steps below.
 
 2. Update these files.
 
-## Sidebar
+## Sidebar style
 - add background image
 - change font color
 
 assets/css/jekyll-theme-chirpy.scss
-```css
+
+```html
 /* append your custom style below */
 #sidebar {
     background-image: url(https://s2.loli.net/2024/08/09/v6sS1XEWTykIlDb.jpg); /* <- change background image */
