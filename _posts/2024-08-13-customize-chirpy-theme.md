@@ -1,5 +1,5 @@
 ---
-title: 一次基于TUI的AI项目初试
+title: customize chirpy theme
 categories: [Blogging]
 tags: [writing]     # TAG names should always be lowercase
 ---
