@@ -1,5 +1,5 @@
 ---
-title: customize chirpy theme
+title: Customize chirpy theme
 categories: [Blogging]
 tags: [writing]     # TAG names should always be lowercase
 ---
