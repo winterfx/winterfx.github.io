@@ -75,3 +75,6 @@ _layouts/home.html
     background-color: #1C64F2 !important;
   }
 </style>
+```
+
+![Alt text]({{ site.baseurl }}/assets/img/chatbpt.png)
