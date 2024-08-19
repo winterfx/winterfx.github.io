@@ -4,7 +4,8 @@ categories: [go]
 tags: [go,net,http]     # TAG names should always be lowercase
 ---
 ## Enhancement in go1.22
-1. routing
+1. routing  
+
 ## Advanced routing  
 1. Support method based routing
     - Before
