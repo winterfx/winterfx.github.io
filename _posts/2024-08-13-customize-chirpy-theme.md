@@ -61,18 +61,17 @@ _layouts/home.html
 ```html
 <!-- dify-->
 <script>
-  window.difyChatbotConfig = {
-   token: 'T1s95Com0uEKiD1i'
+ window.difyChatbotConfig = {
+  token: 'bRCi8WcUPiBl1Ays'
+ }
+</script>
+<script
+ src="https://udify.app/embed.min.js"
+ id="bRCi8WcUPiBl1Ays"
+ defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
   }
- </script>
- <script
-  src="https://udify.app/embed.min.js"
-  id="T1s95Com0uEKiD1i"
-  defer>
- </script>
- <style>
-   #dify-chatbot-bubble-button {
-     background-color: #1C64F2 !important;
-   }
- </style>
-```
+</style>
