@@ -77,4 +77,4 @@ _layouts/home.html
 </style>
 ```
 
-![Alt text]({{ site.baseurl }}/assets/img/chatbpt.png)
+![Alt text]({{ site.baseurl }}/assets/img/chatbot.png)
