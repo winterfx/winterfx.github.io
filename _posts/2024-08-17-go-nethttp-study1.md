@@ -105,14 +105,17 @@ tags: [go,net,http]     # TAG names should always be lowercase
             "/none",       //miss
         }
         ```
-- Conflicting paths & precedence
-    1. most specific wins
+    
+4. Conflicting paths & precedence  
+
+    - most specific wins
         ```go
         router.Handle("/items/{id}", handler1)
         router.Handle("/items/latest", handler2)
         ```
-         the request `/items/latest` will be handled by `handler2`
-    2. conflict detection
+         the request `/items/latest` will be handled by `handler2`  
+
+    - conflict detection
         ```go
         router.Handle("GET /todos/{id}", handler1)
         router.Handle("GET /{resource}/123", handler2)
