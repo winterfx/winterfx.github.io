@@ -324,7 +324,7 @@ Actually,the data shcema rely on the codec you use.
 **Client hold a pending map to store not finished call.Another goroutine will read the response from server and put it into the `pending` map.**   
 
 ### server side
-    ```go
+```go
     type Server struct {
         serviceMap sync.Map   // map[string]*service
         reqLock    sync.Mutex // protects freeReq
@@ -333,47 +333,48 @@ Actually,the data shcema rely on the codec you use.
         freeResp   *Response
     }
     ```
-    Using `freeReq` and `freeResp` to reuse the memory to reduce the memory allocation.
+Using `freeReq` and `freeResp` to reuse the memory to reduce the memory allocation.
 
-    ```go
-    func (server *Server) Accept(lis net.Listener) {
-        for {
-            conn, err := lis.Accept()
-            if err != nil {
-                log.Print("rpc.Serve: accept:", err.Error())
-                return
-            }
-            go server.ServeConn(conn)
+```go
+func (server *Server) Accept(lis net.Listener) {
+    for {
+        conn, err := lis.Accept()
+        if err != nil {
+            log.Print("rpc.Serve: accept:", err.Error())
+            return
         }
+        go server.ServeConn(conn)
     }
-    func (server *Server) ServeCodec(codec ServerCodec) {
-        sending := new(sync.Mutex)
-        wg := new(sync.WaitGroup)
-        for {
-            service, mtype, req, argv, replyv, keepReading, err := server.readRequest(codec)
-            if err != nil {
-                if debugLog && err != io.EOF {
-                    log.Println("rpc:", err)
-                }
-                if !keepReading {
-                    break
-                }
-                // send a response if we actually managed to read a header.
-                if req != nil {
-                    server.sendResponse(sending, req, invalidRequest, codec, err.Error())
-                    server.freeRequest(req)
-                }
-                continue
+}
+func (server *Server) ServeCodec(codec ServerCodec) {
+    sending := new(sync.Mutex)
+    wg := new(sync.WaitGroup)
+    for {
+        service, mtype, req, argv, replyv, keepReading, err := server.readRequest(codec)
+        if err != nil {
+            if debugLog && err != io.EOF {
+                log.Println("rpc:", err)
             }
-            wg.Add(1)
-            go service.call(server, sending, wg, mtype, req, argv, replyv, codec)
+            if !keepReading {
+                break
+            }
+            // send a response if we actually managed to read a header.
+            if req != nil {
+                server.sendResponse(sending, req, invalidRequest, codec, err.Error())
+                server.freeRequest(req)
+            }
+            continue
         }
-        // We've seen that there are no more requests.
-        // Wait for responses to be sent before closing codec.
-        wg.Wait()
-        codec.Close()
+        wg.Add(1)
+        go service.call(server, sending, wg, mtype, req, argv, replyv, codec)
     }
-    ```
+    // We've seen that there are no more requests.
+    // Wait for responses to be sent before closing codec.
+    wg.Wait()
+    codec.Close()
+}
+```
+
 - Using goroutine to handle clients connections.
 - Using goroutine to handle client requests continually from a client connection.
 
