@@ -194,23 +194,23 @@ This article I will introduce the net/rpc in go standard library.This is a very 
 
 2. payload schema
 Typically, the data schema is as follows:
-- request
-```
-+-------------------+
-| Request Header    |  <-- ServiceMethod and Seq
-+-------------------+
-| Serialized Args   |  <-- Serialized business data (call arguments)
-+-------------------+
-```
+    - request
+    ```
+    +-------------------+
+    | Request Header    |  <-- ServiceMethod and Seq
+    +-------------------+
+    | Serialized Args   |  <-- Serialized business data (call arguments)
+    +-------------------+
+    ```
 
-- response
-```
-+-------------------+
-| Response Header   |  <--  ServiceMethod、Seq
-+-------------------+
-| Serialized Reply  |  <-- Serialized business data (return values)
-+-------------------+
-```
+    - response
+    ```
+    +-------------------+
+    | Response Header   |  <--  ServiceMethod、Seq
+    +-------------------+
+    | Serialized Reply  |  <-- Serialized business data (return values)
+    +-------------------+
+    ```
     ```go
     // Request is a header written before every RPC call. It is used internally
     // but documented here as an aid to debugging, such as when analyzing
@@ -257,7 +257,7 @@ Actually,the data shcema rely on the codec you use.
 	    func (t *T) MethodName(argType T1, replyType *T2) error
 
 ## concurrently and sync/async
-1. client side call 
+### client side call 
 - sync
     ```go
     // Call invokes the named function, waits for it to complete, and returns its error status.
@@ -293,37 +293,37 @@ Actually,the data shcema rely on the codec you use.
         return call
     }
     ```
+
+    ```go
+    // NewClientWithCodec is like [NewClient] but uses the specified
+    // codec to encode requests and decode responses.
+    func NewClientWithCodec(codec ClientCodec) *Client {
+        client := &Client{
+            codec:   codec,
+            pending: make(map[uint64]*Call),
+        }
+        go client.input()
+        return client
+    }
+
+    func (client *Client) input() {
+    var err error
+    var response Response
+    for err == nil {
+        response = Response{}
+        err = client.codec.ReadResponseHeader(&response)
+        if err != nil {
+            break
+        }
+        seq := response.Seq
+        client.mutex.Lock()
+        call := client.pending[seq]
+        delete(client.pending, seq)
+        client.mutex.Unlock()
+    ```
 **Client hold a pending map to store not finished call.Another goroutine will read the response from server and put it into the `pending` map.**   
 
-```go
-// NewClientWithCodec is like [NewClient] but uses the specified
-// codec to encode requests and decode responses.
-func NewClientWithCodec(codec ClientCodec) *Client {
-    client := &Client{
-        codec:   codec,
-        pending: make(map[uint64]*Call),
-    }
-    go client.input()
-    return client
-}
-
-func (client *Client) input() {
-var err error
-var response Response
-for err == nil {
-    response = Response{}
-    err = client.codec.ReadResponseHeader(&response)
-    if err != nil {
-        break
-    }
-    seq := response.Seq
-    client.mutex.Lock()
-    call := client.pending[seq]
-    delete(client.pending, seq)
-    client.mutex.Unlock()
-```
-
-2. server side
+### server side
     ```go
     type Server struct {
         serviceMap sync.Map   // map[string]*service
@@ -377,7 +377,7 @@ for err == nil {
 - Using goroutine to handle clients connections.
 - Using goroutine to handle client requests continually from a client connection.
 
-3. reflect  
+### reflect  
 
 The sever using reflect to registrate the service and method.And using reflect to call the method.
 
