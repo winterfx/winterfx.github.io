@@ -211,6 +211,7 @@ Typically, the data schema is as follows:
     | Serialized Reply  |  <-- Serialized business data (return values)
     +-------------------+
     ```
+    
     ```go
     // Request is a header written before every RPC call. It is used internally
     // but documented here as an aid to debugging, such as when analyzing
