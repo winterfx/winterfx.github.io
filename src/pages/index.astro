@@ -1,0 +1,83 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { themeConfig } from '~/.config'
+import { getPosts } from '~/utils'
+
+const posts = await getPosts()
+// Get latest 2 posts
+const latestPosts = posts.slice(0, 2)
+---
+
+<LayoutDefault>
+  <section class="space-y-12">
+    <!-- Personal Introduction -->
+    <div class="space-y-6">
+      <h1 class="text-4xl font-bold">{themeConfig.site.author}</h1>
+      <p class="text-lg leading-relaxed opacity-80">
+        欢迎来到我的个人网站！我是一名软件工程师，AI乐观派、热爱编程、开源和技术分享。
+        在这里，你可以找到我的博客文章、项目作品等。
+      </p>
+      <div class="flex gap-4">
+        {themeConfig.site.socialLinks.map(link => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="opacity-60 hover:opacity-100 transition-opacity"
+          >
+            <span class:list={[link.name === 'x' ? 'i-simple-icons-x' : `i-mdi-${link.name}`, 'w-6 h-6 block text-primary']} />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <a
+        href="/projects"
+        class="p-6 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors"
+      >
+        <span class="i-mdi-code-braces w-8 h-8 block mb-2 opacity-60" />
+        <h3 class="font-bold">Projects</h3>
+        <p class="text-sm opacity-60 mt-1">我的开源项目和作品</p>
+      </a>
+      <a
+        href="/resume"
+        class="p-6 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors"
+      >
+        <span class="i-mdi-account-outline w-8 h-8 block mb-2 opacity-60" />
+        <h3 class="font-bold">Resume</h3>
+        <p class="text-sm opacity-60 mt-1">我的工作经历和技能</p>
+      </a>
+      <a
+        href="/podcasts"
+        class="p-6 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors"
+      >
+        <span class="i-mdi-microphone w-8 h-8 block mb-2 opacity-60" />
+        <h3 class="font-bold">Podcasts</h3>
+        <p class="text-sm opacity-60 mt-1">播客节目和音频内容</p>
+      </a>
+    </div>
+
+    <!-- Recent Posts -->
+    <div class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold">最近文章</h2>
+        <a href="/posts" class="text-sm opacity-60 hover:opacity-100">查看全部 →</a>
+      </div>
+      <div class="space-y-4">
+        {latestPosts.map(post => (
+          <a
+            href={`/posts/${post.id}`}
+            class="block p-4 -mx-4 rounded hover:bg-primary/5 transition-colors"
+          >
+            <h3 class="font-medium">{post.data.title}</h3>
+            <p class="text-sm opacity-60 mt-1">
+              {post.data.description || post.body?.slice(0, 100) + '...'}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</LayoutDefault>

@@ -1,61 +1,211 @@
-# Chirpy Starter
+# Typography
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+<p align='center'>
+  <img src='./public/typograph-og.jpg' alt='Typography' width='600'/>
+</p>
 
-When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders
-`_data`, `_layouts`, `_includes`, `_sass` and `assets`, as well as a small part of options of the `_config.yml` file
-from the theme's gem. If you have ever installed this theme gem, you can use the command
-`bundle info --path jekyll-theme-chirpy` to locate these files.
+<h6 align='center'>
+<a href="https://astro-theme-typography.vercel.app/">Live Demo</a>
+</h6>
+<h5 align='center'>
+<b>This work is rewrite from <a href="https://github.com/sumimakito/hexo-theme-typography">hexo-theme-Typography</a></b>
+</h5>
+<p align='center'>
+<b>English</b> | <a href="./README.zh-CN.md">简体中文</a>
+</p>
 
-The Jekyll team claims that this is to leave the ball in the user’s court, but this also results in users not being
-able to enjoy the out-of-the-box experience when using feature-rich themes.
+## Features
 
-To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your
-Jekyll site. The following is a list of targets:
+- Build with **Astro**, **TypeScript** and **UnoCSS**
+- **Fast**. 100% [Pagespeed Score](https://pagespeed.web.dev/analysis/https-astro-theme-typography-vercel-app/j34nq9tx0s?form_factor=desktop).
+- **Typography** Derived from prevalent Chinese typographic norms and aims to provide an enhanced reading experience for website visitors.
+- **Responsive**. Responsive and works well on all screen sizes.
+- **Accessible**. A well thought out semantic and accessible content.
+- **SEO friendly**.Open Graph and Twitter Cards support for a better social sharing experience.
+- **Sitemap** and **RSS feed** for search engines.
+- i18n support.
+- Support Disqus, Giscus, Twikoo as comment service.
+- Dark mode support.
 
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
+## Demo
+
+> Submit a PR to add your blog Demo.
+
+- [Live Demo](https://astro-theme-typography.vercel.app/)
+- [My Blog](https://blog.moeyua.com/)
+- [Julyfun's Blog (how to fully build this blog using `bun` in minutes)](https://julyfun.fun/posts/%E5%85%89%E9%80%9F%E6%90%AD%E5%BB%BA%E8%BF%99%E6%A0%B7%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/)
+- [Jinx's Blog](https://blog.mytest.cc/)
+- [Unconventional Reading Notes](https://books.beyondxin.top/)
+
+## Getting Started
+
+Typography is a minimal, responsive and SEO-friendly Astro blog theme. This guide will help you get started with a new project.
+
+### Quick Start
+
+You can fork the repository to your account by clicking the Fork button in the upper right corner, click the button below, select the repository you just forked, click the Import button, and you will be taken to the project configuration page.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
+
+Or you can refer to the [Astro](https://docs.astro.build/guides/deploy/) documentation to deploy to your favorite platform.
+
+### Add post
+
+You can add content by creating a new markdown file in `src/content/posts`. The file need metadata in the frontmatter, like this:
+
+```md
+---
+title: title
+pubDate: 2021-08-01
+categories: ["article"]
+description: "description"
+---
 ```
 
-To save you time, and also in case you lose some files while copying, we extract those files/configurations of the
-latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
+Or, you can use the following command in your terminal to create a new post:
 
-## Prerequisites
-
-Follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of
-the basic environment. [Git](https://git-scm.com/) also needs to be installed.
-
-## Installation
-
-Sign in to GitHub and [**use this template**][use-template] to generate a brand new repository and name it
-`USERNAME.github.io`, where `USERNAME` represents your GitHub username.
-
-Then clone it to your local machine and run:
-
-```console
-$ bundle
+```bash
+pnpm theme:create
 ```
 
-## Usage
+## Updating the theme
 
-Please see the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy#documentation).
+You can simply [`Sync Fork`](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) on your own forked project (do not click Discard Changes, otherwise you will lose your own changes).
 
-## Contributing
+## Customization
 
-The contents of this repository are automatically updated when new releases are made to the [main repository][chirpy].  
-If you have problems using it, or would like to participate in improving it, please go to the main repository for feedback!
+Typography is highly customizable. The default configuration file is [src/.config/default.ts](src/.config/default.ts), you can override the default configuration in [src/.config/user.ts](src/.config/user.ts) as needed.
 
-## License
+### Social links
 
-This work is published under [MIT][mit] License.
+Typography has built-in support for adding links to your social media accounts to the site via the social option in the config file:
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[use-template]: https://github.com/cotes2020/chirpy-starter/generate
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+```ts
+socials: [
+  {
+    name: 'github',
+    href: 'https://github.com/moeyua/astro-theme-typography'
+  }
+]
+```
+
+The `name` is the icon name in [Material Design Icons](https://pictogrammers.com/library/mdi/),
+which will be automatically generated as the icon.
+
+> Note that you need to restart the development server to see the changes.
+
+### Navigation links
+
+By default, the navigation are `Posts`, `Archive`, `Categories` and `About`. You can add more in the config file:
+
+```ts
+{
+  navs: [
+    {
+      name: 'Categories',
+      href: '/categories'
+    }
+  ]
+}
+```
+
+And then add the corresponding page in `src/pages`, see more in [Astro Pages](https://docs.astro.build/en/core-concepts/astro-pages/)
+
+### Dark mode
+
+Typography supports dark mode. You can change it in the config file:
+
+```ts
+themeStyle: 'dark' // 'light' | 'dark' | 'system'
+```
+
+### Internationalization (i18n)
+
+Typography provides built-in support for multilingual sites. By default, the language is `en-us`, you can change it in the config file:
+
+```ts
+locale: 'zh-cn'
+```
+
+For now, Typography supports below languages:
+
+- `en-us`
+- `zh-cn`
+- `zh-tw`
+- `ja-jp`
+- `it-it`
+
+You can see all supported languages in [src/i18n.ts](src/i18n.ts), and add more if you need.
+
+### Comment
+
+Typography supports multiple comment services, currently supports [Disqus](https://disqus.com/), [Giscus](https://giscus.app/) and [Twikoo](https://twikoo.js.org/).
+
+Enable the corresponding comment service by adding the configuration to the config file, when you fill in multiple comment services, only the first service will be displayed.
+
+#### Disqus
+
+You can enable Disqus by adding the following configuration to the config file:
+
+```ts
+comments: {
+  disqus: {
+    shortname: 'your-disqus-shortname'
+  }
+}
+```
+
+#### Giscus
+
+Based on the [Giscus web component](https://github.com/giscus/giscus-component?tab=readme-ov-file#using-the-web-component) implementation.
+
+The prop names are the same as the data- attributes shown on the [giscus website](<(https://giscus.app/)>), but written in camelCase with the data- prefix and dashes removed.
+
+You can enable Giscus by adding the following configuration to the config file:
+
+```ts
+{
+  comments: {
+    giscus: {
+      repo: 'moeyua/astro-theme-typography'
+      repoId: 'R_kgDOKy9HOQ'
+      category: 'General'
+      categoryId: 'DIC_kwDOKy9HOc4CegmW'
+      mapping: 'title'
+      strict: '0'
+      reactionsEnabled: '1'
+      emitMetadata: '1'
+      inputPosition: 'top'
+      theme: 'light'
+      lang: 'zh-CN'
+      loading: 'lazy'
+    }
+  }
+}
+```
+
+#### Twikoo
+
+You can enable Twikoo by adding the following configuration to the config file:
+
+```ts
+{
+  comments: {
+    twikoo: {
+      envId: 'your-env-id'
+    }
+  }
+}
+```
+
+## Pagespeed Score
+
+[![Pagespeed Score](https://github.com/moeyua/astro-theme-typography/assets/45156493/2272f576-d6ff-49ef-a294-5c2acf365907)](https://pagespeed.web.dev/analysis/https-astro-theme-typography-vercel-app/j34nq9tx0s?form_factor=desktop)
+
+## TODO
+
+- [ ] WebSub
+- [x] comment
+- [ ] search
+- [ ] analytics

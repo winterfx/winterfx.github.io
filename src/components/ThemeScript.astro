@@ -1,0 +1,34 @@
+---
+import { themeConfig } from '~/.config'
+
+const theme = themeConfig.appearance.theme
+---
+
+<script is:inline define:vars={{ theme }}>
+  function updateTheme(configTheme) {
+    // Check localStorage first
+    const savedTheme = localStorage.getItem('theme')
+    const themeToUse = savedTheme || configTheme
+
+    // Check if theme is system
+    if (themeToUse === 'system') {
+      // Check OS preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      document.documentElement.classList.toggle('dark', prefersDark)
+      return
+    }
+    // Set theme directly
+    document.documentElement.classList.toggle('dark', themeToUse === 'dark')
+  }
+
+  // Initial theme setup
+  updateTheme(theme)
+
+  // Listen for OS theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    const savedTheme = localStorage.getItem('theme')
+    if (!savedTheme || savedTheme === 'system') {
+      document.documentElement.classList.toggle('dark', e.matches)
+    }
+  })
+</script>

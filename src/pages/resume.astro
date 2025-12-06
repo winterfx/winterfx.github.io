@@ -1,0 +1,83 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { themeConfig } from '~/.config'
+---
+
+<LayoutDefault>
+  <article class="prose prose-lg max-w-none">
+    <h1>Resume</h1>
+
+    <section class="mb-12">
+      <h2>关于我</h2>
+      <p>
+        你好！我是 {themeConfig.site.author}，一名热爱技术的软件工程师。
+        我专注于后端开发和系统架构，同时对前端技术和开源项目也有浓厚的兴趣。
+      </p>
+    </section>
+
+    <section class="mb-12">
+      <h2>技能</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
+        <div class="p-4 border border-primary/20 rounded">
+          <h3 class="font-bold mb-2">编程语言</h3>
+          <p class="text-sm opacity-70">Go, Python, TypeScript, JavaScript</p>
+        </div>
+        <div class="p-4 border border-primary/20 rounded">
+          <h3 class="font-bold mb-2">框架与工具</h3>
+          <p class="text-sm opacity-70">Gin, Echo, React, Vue, Docker, Kubernetes</p>
+        </div>
+        <div class="p-4 border border-primary/20 rounded">
+          <h3 class="font-bold mb-2">数据库</h3>
+          <p class="text-sm opacity-70">PostgreSQL, MySQL, Redis, MongoDB</p>
+        </div>
+        <div class="p-4 border border-primary/20 rounded">
+          <h3 class="font-bold mb-2">其他</h3>
+          <p class="text-sm opacity-70">Git, Linux, CI/CD, Cloud Services</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2>工作经历</h2>
+      <div class="space-y-6 not-prose">
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h3 class="font-bold">软件工程师</h3>
+          <p class="text-sm opacity-60">公司名称 · 2022 - 至今</p>
+          <ul class="mt-2 text-sm space-y-1 list-disc list-inside opacity-80">
+            <li>负责核心业务系统的开发和维护</li>
+            <li>参与系统架构设计和技术选型</li>
+            <li>优化系统性能，提升用户体验</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2>教育背景</h2>
+      <div class="not-prose border-l-2 border-primary/30 pl-4">
+        <h3 class="font-bold">计算机科学与技术</h3>
+        <p class="text-sm opacity-60">大学名称 · 本科</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>联系方式</h2>
+      <p>
+        如果你对我的经历感兴趣，欢迎通过以下方式联系我：
+      </p>
+      <div class="flex gap-4 mt-4 not-prose">
+        {themeConfig.site.socialLinks.map(link => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity"
+          >
+            <span class:list={[link.name === 'x' ? 'i-simple-icons-x' : `i-mdi-${link.name}`, 'w-5 h-5 text-primary']} />
+            <span class="text-sm">{link.name}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </article>
+</LayoutDefault>

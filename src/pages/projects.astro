@@ -1,0 +1,80 @@
+---
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+
+// Define your projects here
+const projects = [
+  {
+    name: 'GitToday',
+    description: '基于 TUI 的 GitHub Trending 分析工具，使用 AI 解读项目亮点',
+    tech: ['Go', 'Bubbletea', 'AI'],
+    github: 'https://github.com/winterfx/gitoday',
+    demo: '',
+  },
+  {
+    name: 'Personal Blog',
+    description: '基于 Astro 构建的个人博客网站',
+    tech: ['Astro', 'TypeScript', 'UnoCSS'],
+    github: 'https://github.com/winterfx/winterfx.github.io',
+    demo: '',
+  },
+  // Add more projects here
+]
+---
+
+<LayoutDefault>
+  <article class="prose prose-lg max-w-none">
+    <h1>Projects</h1>
+    <p class="lead">
+      这里是我的一些开源项目和个人作品。大部分项目都可以在 GitHub 上找到源代码。
+    </p>
+
+    <div class="grid gap-6 mt-8 not-prose">
+      {projects.map(project => (
+        <div class="p-6 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors">
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold">{project.name}</h3>
+              <p class="mt-2 opacity-70">{project.description}</p>
+              <div class="flex flex-wrap gap-2 mt-3">
+                {project.tech.map(t => (
+                  <span class="px-2 py-1 text-xs bg-primary/10 rounded">{t}</span>
+                ))}
+              </div>
+            </div>
+            <div class="flex gap-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-2 opacity-60 hover:opacity-100 transition-opacity"
+                  title="GitHub"
+                >
+                  <span class="i-mdi-github w-6 h-6 block" />
+                </a>
+              )}
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="p-2 opacity-60 hover:opacity-100 transition-opacity"
+                  title="Demo"
+                >
+                  <span class="i-mdi-open-in-new w-6 h-6 block" />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <section class="mt-12">
+      <h2>想看更多？</h2>
+      <p>
+        访问我的 <a href="https://github.com/winterfx" target="_blank" rel="noopener noreferrer">GitHub 主页</a> 查看更多项目。
+      </p>
+    </section>
+  </article>
+</LayoutDefault>

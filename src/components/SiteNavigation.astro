@@ -1,0 +1,44 @@
+---
+import { themeConfig } from '~/.config'
+
+const { navLinks } = themeConfig.site
+const { translate: t } = Astro.locals
+
+const pathname = Astro.url.pathname
+
+// Posts 相关页面：/posts, /archive, /categories
+const isPostsSection = pathname.startsWith('/posts') || pathname.startsWith('/archive') || pathname.startsWith('/categories')
+// Resume、Podcasts、Projects 页面
+const isSimplePage = pathname.startsWith('/resume') || pathname.startsWith('/podcasts') || pathname.startsWith('/projects')
+
+const postsNavLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Archive', href: '/archive' },
+  { name: 'Categories', href: '/categories' },
+]
+
+const simpleNavLinks = [
+  { name: 'Home', href: '/' },
+]
+
+let displayLinks = navLinks
+if (isPostsSection) {
+  displayLinks = postsNavLinks
+} else if (isSimplePage) {
+  displayLinks = simpleNavLinks
+}
+---
+
+<nav class="text-center font-bold" flex="~ col gap-4">
+  <ul lg="flex-col items-start text-4" class="text-3.5" flex="~ row gap-2 justify-center">
+    {
+      displayLinks.map((nav) => (
+        <li>
+          <a class="" href={nav.href}>
+            {t(nav.name)}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
