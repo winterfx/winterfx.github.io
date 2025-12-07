@@ -6,9 +6,9 @@
 }
 
 html.dark {
-  --uno-colors-primary: #FFFFFF;
+  --uno-colors-primary: #ffffff;
   --uno-colors-background: #232222;
-  --uno-colors-shadow: #FFFFFF0F;
+  --uno-colors-shadow: #ffffff0f;
 }
 html {
   --at-apply: antialiased;

@@ -1,111 +1,136 @@
+---
+title: Go net/rpc Study
+pubDate: 2024-10-21
+categories: [Go]
+tags: [go, rpc]
+description: This article introduces the net/rpc in go standard library
+---
+
 This article I will introduce the net/rpc in go standard library.This is a very tiny and powerful feature and deserves to study.
+
 ## Typical RPC Architecture and Features
-![]({{ site.baseurl }}/assets/img/rpc/1.png)
+
+![](/assets/img/rpc/1.png)
+
 ### protocol
+
 1. transport protocol
-    - tcp
-    - http
-    - ...
+   - tcp
+   - http
+   - ...
 2. data protocol
-    - encoding
-        - json
-        - xml
-        - protobuf
-        - ...
-    - payload schema
+
+   - encoding
+     - json
+     - xml
+     - protobuf
+     - ...
+   - payload schema
 
 3. api definition
-    - pb file
-    - rules established by implementer
-    - ...
+   - pb file
+   - rules established by implementer
+   - ...
 
 ### server feature
-1. registration  
-    - service registration
+
+1. registration
+   - service registration
 2. listen and accept client connection
 3. handle client request in loop
-    - decode request
-    - call service method
-    - encode response
+   - decode request
+   - call service method
+   - encode response
 4. concurrently and sync/async
+
 ### client feature
+
 1. call remote service
-    - encode request
-    - send request
-    - decode response
-2.  handle server response in loop
-    - decode response
-    - call callback 
-2. concurrently and sync/async
+   - encode request
+   - send request
+   - decode response
+2. handle server response in loop
+   - decode response
+   - call callback
+3. concurrently and sync/async
 
 ## RPC in go
+
 ### Transport Protocol
+
 - customer defined
-    ```go
-    // Accept accepts connections on the listener and serves requests
-    // to [DefaultServer] for each incoming connection.
-    // Accept blocks; the caller typically invokes it in a go statement.
-    func Accept(lis net.Listener) { DefaultServer.Accept(lis) }
 
-    // A Listener is a generic network listener for stream-oriented protocols.
-    
-    //
-    // Multiple goroutines may invoke methods on a Listener simultaneously.
-    type Listener interface {
-        // Accept waits for and returns the next connection to the listener.
-        Accept() (Conn, error)
+  ```go
+  // Accept accepts connections on the listener and serves requests
+  // to [DefaultServer] for each incoming connection.
+  // Accept blocks; the caller typically invokes it in a go statement.
+  func Accept(lis net.Listener) { DefaultServer.Accept(lis) }
 
-        // Close closes the listener.
-        // Any blocked Accept operations will be unblocked and return errors.
-        Close() error
+  // A Listener is a generic network listener for stream-oriented protocols.
 
-        // Addr returns the listener's network address.
-        Addr() Addr
-    }
-    ```
-    So any connection that implements the `net.Listener` interface can be used as a transport protocol.  
-    
-    **http** 
+  //
+  // Multiple goroutines may invoke methods on a Listener simultaneously.
+  type Listener interface {
+      // Accept waits for and returns the next connection to the listener.
+      Accept() (Conn, error)
 
-    ```go
-    arith := new(Arith)
-    rpc.Register(arith)
-    rpc.HandleHTTP()
-    l, e := net.Listen("tcp", ":1234")
-    if e != nil {
-        log.Fatal("listen error:", e)
-    }
-    go http.Serve(l, nil)
+      // Close closes the listener.
+      // Any blocked Accept operations will be unblocked and return errors.
+      Close() error
 
-    //client
-    client, err := rpc.DialHTTP("tcp", serverAddress + ":1234")
-    if err != nil {
-        log.Fatal("dialing:", err)
-    }
-    ```
-    **tcp**
-    ```go
-    arith := new(Arith)
-    rpc.Register(arith)
-    l, err := net.Listen("tcp", "127.0.0.1:0") 
-    if err != nil {
-        log.Fatal("listen error:", err)
-    }
-    for {
-        conn, err := l.Accept()
-        if err != nil {
-            log.Fatal("accept error:", err)
-        }
-        go rpc.ServeConn(conn)
-    }
-    ```
+      // Addr returns the listener's network address.
+      Addr() Addr
+  }
+  ```
+
+  So any connection that implements the `net.Listener` interface can be used as a transport protocol.
+
+  **http**
+
+  ```go
+  arith := new(Arith)
+  rpc.Register(arith)
+  rpc.HandleHTTP()
+  l, e := net.Listen("tcp", ":1234")
+  if e != nil {
+      log.Fatal("listen error:", e)
+  }
+  go http.Serve(l, nil)
+
+  //client
+  client, err := rpc.DialHTTP("tcp", serverAddress + ":1234")
+  if err != nil {
+      log.Fatal("dialing:", err)
+  }
+  ```
+
+  **tcp**
+
+  ```go
+  arith := new(Arith)
+  rpc.Register(arith)
+  l, err := net.Listen("tcp", "127.0.0.1:0")
+  if err != nil {
+      log.Fatal("listen error:", err)
+  }
+  for {
+      conn, err := l.Accept()
+      if err != nil {
+          log.Fatal("accept error:", err)
+      }
+      go rpc.ServeConn(conn)
+  }
+  ```
 
 ### Data Protocol
-1. encoding
+
+1.  encoding
+
     - gob(NewClient)
-    - customer defined(NewClientWithCodec)  
+    - customer defined(NewClientWithCodec)
 
     **client**
+
     ```go
     // A ClientCodec implements writing of RPC requests and
     // reading of RPC responses for the client side of an RPC session.
@@ -152,6 +177,7 @@ This article I will introduce the net/rpc in go standard library.This is a very 
     ```
 
     **server**
+
     ```go
     // A ServerCodec implements reading of RPC requests and writing of
     // RPC responses for the server side of an RPC session.
@@ -186,14 +212,16 @@ This article I will introduce the net/rpc in go standard library.This is a very 
         DefaultServer.ServeCodec(codec)
     }
     ```
+
     So any codec that implements the `ServerCodec` interface can be used as codec in server side.If client use gob as data protocol, you can use `ServeConn(conn io.ReadWriteCloser)`,this method will use gob as the data protocol.
     If client use a specified codec as data protocol, you can use `ServeCodec(codec ServerCodec)`,this method will use the specified codec as the data protocol.And `jsonrpc` is a built-in codec in go, you can use `rpc.ServeCodec(jsonrpc.NewServerCodec(conn))` to use it.
     Codec has a 2 responsibilities:
-    - encode to memory.It contains construct the messge data.
-    - decode from memory.It contains idetidy the boundary of message.  
 
-2. payload schema
-Typically, the data schema is as follows:
+    - encode to memory.It contains construct the messge data.
+    - decode from memory.It contains idetidy the boundary of message.
+
+2.  payload schema
+    Typically, the data schema is as follows:
     - request
     ```
     +-------------------+
@@ -211,7 +239,7 @@ Typically, the data schema is as follows:
     | Serialized Reply  |  <-- Serialized business data (return values)
     +-------------------+
     ```
-    
+
     ```go
     // Request is a header written before every RPC call. It is used internally
     // but documented here as an aid to debugging, such as when analyzing
@@ -242,98 +270,104 @@ Typically, the data schema is as follows:
         return c.encBuf.Flush()
     }
     ```
-Actually,the data shcema rely on the codec you use.
 
-### Api Definition  
-    Only methods that satisfy these criteria will be made available for remote access
+    Actually,the data shcema rely on the codec you use.
 
-  - the method's type is exported.
-  - the method is exported.
-  - the method has two arguments, both exported (or builtin) types.
-  - the method's second argument is a pointer.
-  - the method has return type error.
+### Api Definition
 
-    In effect, the method must look schematically like
+Only methods that satisfy these criteria will be made available for remote access
 
-	    func (t *T) MethodName(argType T1, replyType *T2) error
+- the method's type is exported.
+- the method is exported.
+- the method has two arguments, both exported (or builtin) types.
+- the method's second argument is a pointer.
+- the method has return type error.
+
+  In effect, the method must look schematically like
+
+      func (t *T) MethodName(argType T1, replyType *T2) error
 
 ## concurrently and sync/async
-### client side call 
+
+### client side call
+
 - sync
-    ```go
-    // Call invokes the named function, waits for it to complete, and returns its error status.
-    func (client *Client) Call(serviceMethod string, args any, reply any) error {
-        call := <-client.Go(serviceMethod, args, reply, make(chan *Call, 1)).Done
-        return call.Error
-    }
-    ```
+  ```go
+  // Call invokes the named function, waits for it to complete, and returns its error status.
+  func (client *Client) Call(serviceMethod string, args any, reply any) error {
+      call := <-client.Go(serviceMethod, args, reply, make(chan *Call, 1)).Done
+      return call.Error
+  }
+  ```
 - async
-    ```go
-    // Go invokes the function asynchronously. It returns the [Call] structure representing
-    // the invocation. The done channel will signal when the call is complete by returning
-    // the same Call object. If done is nil, Go will allocate a new channel.
-    // If non-nil, done must be buffered or Go will deliberately crash.
-    func (client *Client) Go(serviceMethod string, args any, reply any, done chan *Call) *Call {
-        call := new(Call)
-        call.ServiceMethod = serviceMethod
-        call.Args = args
-        call.Reply = reply
-        if done == nil {
-            done = make(chan *Call, 10) // buffered.
-        } else {
-            // If caller passes done != nil, it must arrange that
-            // done has enough buffer for the number of simultaneous
-            // RPCs that will be using that channel. If the channel
-            // is totally unbuffered, it's best not to run at all.
-            if cap(done) == 0 {
-                log.Panic("rpc: done channel is unbuffered")
-            }
-        }
-        call.Done = done
-        client.send(call)
-        return call
-    }
-    ```
+  ```go
+  // Go invokes the function asynchronously. It returns the [Call] structure representing
+  // the invocation. The done channel will signal when the call is complete by returning
+  // the same Call object. If done is nil, Go will allocate a new channel.
+  // If non-nil, done must be buffered or Go will deliberately crash.
+  func (client *Client) Go(serviceMethod string, args any, reply any, done chan *Call) *Call {
+      call := new(Call)
+      call.ServiceMethod = serviceMethod
+      call.Args = args
+      call.Reply = reply
+      if done == nil {
+          done = make(chan *Call, 10) // buffered.
+      } else {
+          // If caller passes done != nil, it must arrange that
+          // done has enough buffer for the number of simultaneous
+          // RPCs that will be using that channel. If the channel
+          // is totally unbuffered, it's best not to run at all.
+          if cap(done) == 0 {
+              log.Panic("rpc: done channel is unbuffered")
+          }
+      }
+      call.Done = done
+      client.send(call)
+      return call
+  }
+  ```
 
-    ```go
-    // NewClientWithCodec is like [NewClient] but uses the specified
-    // codec to encode requests and decode responses.
-    func NewClientWithCodec(codec ClientCodec) *Client {
-        client := &Client{
-            codec:   codec,
-            pending: make(map[uint64]*Call),
-        }
-        go client.input()
-        return client
-    }
+  ```go
+  // NewClientWithCodec is like [NewClient] but uses the specified
+  // codec to encode requests and decode responses.
+  func NewClientWithCodec(codec ClientCodec) *Client {
+      client := &Client{
+          codec:   codec,
+          pending: make(map[uint64]*Call),
+      }
+      go client.input()
+      return client
+  }
 
-    func (client *Client) input() {
-    var err error
-    var response Response
-    for err == nil {
-        response = Response{}
-        err = client.codec.ReadResponseHeader(&response)
-        if err != nil {
-            break
-        }
-        seq := response.Seq
-        client.mutex.Lock()
-        call := client.pending[seq]
-        delete(client.pending, seq)
-        client.mutex.Unlock()
-    ```
-**Client hold a pending map to store not finished call.Another goroutine will read the response from server and put it into the `pending` map.**   
+  func (client *Client) input() {
+      var err error
+      var response Response
+      for err == nil {
+          response = Response{}
+          err = client.codec.ReadResponseHeader(&response)
+          if err != nil {
+              break
+          }
+          seq := response.Seq
+          client.mutex.Lock()
+          call := client.pending[seq]
+          delete(client.pending, seq)
+          client.mutex.Unlock()
+  ```
+
+  **Client hold a pending map to store not finished call.Another goroutine will read the response from server and put it into the `pending` map.**
 
 ### server side
+
 ```go
-    type Server struct {
-        serviceMap sync.Map   // map[string]*service
-        reqLock    sync.Mutex // protects freeReq
-        freeReq    *Request
-        respLock   sync.Mutex // protects freeResp
-        freeResp   *Response
-    }
-    ```
+type Server struct {
+    serviceMap sync.Map   // map[string]*service
+    reqLock    sync.Mutex // protects freeReq
+    freeReq    *Request
+    respLock   sync.Mutex // protects freeResp
+    freeResp   *Response
+}
+```
 Using `freeReq` and `freeResp` to reuse the memory to reduce the memory allocation.
 
 ```go
@@ -379,47 +413,47 @@ func (server *Server) ServeCodec(codec ServerCodec) {
 - Using goroutine to handle clients connections.
 - Using goroutine to handle client requests continually from a client connection.
 
-### reflect  
+### reflect
 
 The sever using reflect to registrate the service and method.And using reflect to call the method.
 
 ```go
-    type service struct {
-        name   string                 // name of service
-        rcvr   reflect.Value          // receiver of methods for the service
-        typ    reflect.Type           // type of the receiver
-        method map[string]*methodType // registered methods
-    }
+type service struct {
+    name   string                 // name of service
+    rcvr   reflect.Value          // receiver of methods for the service
+    typ    reflect.Type           // type of the receiver
+    method map[string]*methodType // registered methods
+}
 
-    type methodType struct {
-        sync.Mutex // protects counters
-        method     reflect.Method
-        ArgType    reflect.Type
-        ReplyType  reflect.Type
-        numCalls   uint
-    }
+type methodType struct {
+    sync.Mutex // protects counters
+    method     reflect.Method
+    ArgType    reflect.Type
+    ReplyType  reflect.Type
+    numCalls   uint
+}
 
-    func (s *service) call(server *Server, sending *sync.Mutex, wg *sync.WaitGroup, mtype *methodType, req *Request, argv, replyv reflect.Value, codec ServerCodec) {
-        if wg != nil {
-            defer wg.Done()
-        }
-        mtype.Lock()
-        mtype.numCalls++
-        mtype.Unlock()
-        function := mtype.method.Func
-        // Invoke the method, providing a new value for the reply.
-        returnValues := function.Call([]reflect.Value{s.rcvr, argv, replyv})
-        // The return value for the method is an error.
-        errInter := returnValues[0].Interface()
-        errmsg := ""
-        if errInter != nil {
-            errmsg = errInter.(error).Error()
-        }
-        server.sendResponse(sending, req, replyv.Interface(), codec, errmsg)
-        server.freeRequest(req)
+func (s *service) call(server *Server, sending *sync.Mutex, wg *sync.WaitGroup, mtype *methodType, req *Request, argv, replyv reflect.Value, codec ServerCodec) {
+    if wg != nil {
+        defer wg.Done()
     }
+    mtype.Lock()
+    mtype.numCalls++
+    mtype.Unlock()
+    function := mtype.method.Func
+    // Invoke the method, providing a new value for the reply.
+    returnValues := function.Call([]reflect.Value{s.rcvr, argv, replyv})
+    // The return value for the method is an error.
+    errInter := returnValues[0].Interface()
+    errmsg := ""
+    if errInter != nil {
+        errmsg = errInter.(error).Error()
+    }
+    server.sendResponse(sending, req, replyv.Interface(), codec, errmsg)
+    server.freeRequest(req)
+}
 ```
 
-
 ## Reference
+
 https://darjun.github.io/2020/05/08/godailylib/rpc/

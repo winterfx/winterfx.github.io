@@ -6,134 +6,151 @@ description: Learning Go net/http package basics with go1.22 enhancements
 ---
 
 ## Enhancement in go1.22
+
 1. routing
 
 ## Advanced routing
+
 1. Support method based routing
-    - Before
-        ```go
-        router.HandleFunc("/todos", FindByID)
 
-        func FindByID(w http.ResponseWriter, r *http.Request) {
-        if r.Method == http.MethodGet {
-                //handlre get
-        }else if r.Method == http.MethodPost {
-                    //handle post
-        }else{
-            //handle other method
-            }
-        }
+   - Before
 
-        ```
+     ```go
+     router.HandleFunc("/todos", FindByID)
 
-    - After
-        ```go
-        router.Handle("GET /todos", handler1)
-        router.Handle("POST /todos", handler2)
-        ```
-        **If a path no explicit method defined, it will handle any method that have not been defined explicitly.**
+     func FindByID(w http.ResponseWriter, r *http.Request) {
+     if r.Method == http.MethodGet {
+             //handlre get
+     }else if r.Method == http.MethodPost {
+                 //handle post
+     }else{
+         //handle other method
+         }
+     }
 
-        ```go
-        router.Handle("PUT /todos", handler1)
-        router.Handle("/todos", handler2)
-        ```
-        The `handler2` will handle the request of `GET POST DELETE PUT /todos`
+     ```
+
+   - After
+
+     ```go
+     router.Handle("GET /todos", handler1)
+     router.Handle("POST /todos", handler2)
+     ```
+
+     **If a path no explicit method defined, it will handle any method that have not been defined explicitly.**
+
+     ```go
+     router.Handle("PUT /todos", handler1)
+     router.Handle("/todos", handler2)
+     ```
+
+     The `handler2` will handle the request of `GET POST DELETE PUT /todos`
+
 2. Support host based routing
 3. Support wide card routing (path parameter)
-        example:
-        `/{message}`
-        `/products/{slug}`
-        `/{id}/elements`
-        Unvalid example:
-        `/product_{id}`
-        `/articles/{slug}.html`
+   example:
+   `/{message}`
+   `/products/{slug}`
+   `/{id}/elements`
+   Unvalid example:
+   `/product_{id}`
+   `/articles/{slug}.html`
 
-    `r.PathValue("id")` to get the value of the path parameter
-    - basic usage
+   `r.PathValue("id")` to get the value of the path parameter
 
-        `curl "http://localhost:8080/todos/123?p=1"`
+   - basic usage
 
-        ```go
-        router.HandleFunc("GET /todos/{id}", func(w http.ResponseWriter, r *http.Request) {
-            id := r.PathValue("id")
-            p := r.URL.Query().Get("p")
-            w.Write([]byte("get a todo by id " + id + " " + p))
-        })
-        ```
-    - multiple wildcards
-        `/chats/{id}/message/{index}`
-    - Matching remainder
-        The last wildcard in a pattern can optionally match all remaining path segments by having its name end in `...`
-        ```go
-        mux.HandleFunc("/tree/{steps...}", handler)
+     `curl "http://localhost:8080/todos/123?p=1"`
 
-        urls := []string{
-            "/tree/1",        //match
-            "/tree/1/2",      //match
-            "/tree/1/2/test", //match
-            "/tree/",         //miss
-            "/tree",          //miss
-            "/none",          //miss
-        }
+     ```go
+     router.HandleFunc("GET /todos/{id}", func(w http.ResponseWriter, r *http.Request) {
+         id := r.PathValue("id")
+         p := r.URL.Query().Get("p")
+         w.Write([]byte("get a todo by id " + id + " " + p))
+     })
+     ```
 
-        ```
-    - *Pattern with trailing slash*
-        If a routing pattern ends in a trailing slash, that will result in an `anonymous` `...`
+   - multiple wildcards
+     `/chats/{id}/message/{index}`
+   - Matching remainder
+     The last wildcard in a pattern can optionally match all remaining path segments by having its name end in `...`
 
-        ```go
-        mux.HandleFunc("/tree/", handler)
+     ```go
+     mux.HandleFunc("/tree/{steps...}", handler)
 
-        urls := []string{
-            "/tree/1",        //match
-            "/tree/1/2",      //match
-            "/tree/1/2/test", //match
-            "/tree/",         //match
-            "/tree",          //miss
-            "/none",          //miss
-        }
-        //Note that we can't retrieve the steps using r.PathValue, so we use r.URL.Path instead.
-        func handler(w http.ResponseWriter, r *http.Request) {
-            fmt.Printf("URL Path received: %s\n", r.URL.Path)
-        }
-        ```
-     - Match end of URL {$}
-        ```go
-        mux.HandleFunc("/tree/{$}", handler)
+     urls := []string{
+         "/tree/1",        //match
+         "/tree/1/2",      //match
+         "/tree/1/2/test", //match
+         "/tree/",         //miss
+         "/tree",          //miss
+         "/none",          //miss
+     }
 
-        urls := []string{
-            "/tree/",     //match
-            "/tree",      //miss
-            "/tree/1",    //miss
-            "/none",       //miss
-        }
-        ```
+     ```
+
+   - _Pattern with trailing slash_
+     If a routing pattern ends in a trailing slash, that will result in an `anonymous` `...`
+
+     ```go
+     mux.HandleFunc("/tree/", handler)
+
+     urls := []string{
+         "/tree/1",        //match
+         "/tree/1/2",      //match
+         "/tree/1/2/test", //match
+         "/tree/",         //match
+         "/tree",          //miss
+         "/none",          //miss
+     }
+     //Note that we can't retrieve the steps using r.PathValue, so we use r.URL.Path instead.
+     func handler(w http.ResponseWriter, r *http.Request) {
+         fmt.Printf("URL Path received: %s\n", r.URL.Path)
+     }
+     ```
+
+   - Match end of URL {$}
+
+     ```go
+     mux.HandleFunc("/tree/{$}", handler)
+
+     urls := []string{
+         "/tree/",     //match
+         "/tree",      //miss
+         "/tree/1",    //miss
+         "/none",       //miss
+     }
+     ```
 
 4. Conflicting paths & precedence
 
-    - most specific wins
-        ```go
-        router.Handle("/items/{id}", handler1)
-        router.Handle("/items/latest", handler2)
-        ```
-         the request `/items/latest` will be handled by `handler2`
+   - most specific wins
 
-    - conflict detection
-        ```go
-        router.Handle("GET /todos/{id}", handler1)
-        router.Handle("GET /{resource}/123", handler2)
-        ```
-        will panic at runtime in compile time,and error as below:
-        ```
-        panic: pattern "GET /{resources}/123" (registered at /Users/winter_wang/go1.22_projects/demo/main.go:34) conflicts with pattern "GET /todos/{id}" (registered at /Users/winter_wang/go1.22_projects/demo/main.go:18):
-        GET /{resources}/123 and GET /todos/{id} both match some paths, like "/todos/123".
-        But neither is more specific than the other.
-        GET /{resources}/123 matches "/resources/123", but GET /todos/{id} doesn't.
-        GET /todos/{id} matches "/todos/id", but GET /{resources}/123 doesn't.
-        ```
+     ```go
+     router.Handle("/items/{id}", handler1)
+     router.Handle("/items/latest", handler2)
+     ```
 
+     the request `/items/latest` will be handled by `handler2`
+
+   - conflict detection
+     ```go
+     router.Handle("GET /todos/{id}", handler1)
+     router.Handle("GET /{resource}/123", handler2)
+     ```
+     will panic at runtime in compile time,and error as below:
+     ```
+     panic: pattern "GET /{resources}/123" (registered at /Users/winter_wang/go1.22_projects/demo/main.go:34) conflicts with pattern "GET /todos/{id}" (registered at /Users/winter_wang/go1.22_projects/demo/main.go:18):
+     GET /{resources}/123 and GET /todos/{id} both match some paths, like "/todos/123".
+     But neither is more specific than the other.
+     GET /{resources}/123 matches "/resources/123", but GET /todos/{id} doesn't.
+     GET /todos/{id} matches "/todos/id", but GET /{resources}/123 doesn't.
+     ```
 
 ## Middleware
+
 Here is a simple example to implement middlewares using ntt/http package.
+
 ```go
 type Middleware func(handler http.Handler) http.Handler
 
@@ -201,7 +218,9 @@ func main() {
 ```
 
 ## Group Routing and subrouting
+
 `http.StripPrefix` to create a group routing
+
 ```go
 func main() {
 	router := http.NewServeMux()
@@ -226,7 +245,9 @@ func main() {
 	}
 }
 ```
+
 ## Pass through context
+
 ```go
 
 const TokenKey = "Authorization"
@@ -246,5 +267,6 @@ func AuthMiddleware(next http.Handler) http.Handler {
 ```
 
 ## Reference
+
 https://www.willem.dev/articles/url-path-parameters-in-routes/
 https://www.youtube.com/watch?v=H7tbjKFSg58

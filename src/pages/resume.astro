@@ -62,21 +62,23 @@ import { themeConfig } from '~/.config'
 
     <section>
       <h2>联系方式</h2>
-      <p>
-        如果你对我的经历感兴趣，欢迎通过以下方式联系我：
-      </p>
+      <p>如果你对我的经历感兴趣，欢迎通过以下方式联系我：</p>
       <div class="flex gap-4 mt-4 not-prose">
-        {themeConfig.site.socialLinks.map(link => (
-          <a
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity"
-          >
-            <span class:list={[link.name === 'x' ? 'i-simple-icons-x' : `i-mdi-${link.name}`, 'w-5 h-5 text-primary']} />
-            <span class="text-sm">{link.name}</span>
-          </a>
-        ))}
+        {
+          themeConfig.site.socialLinks.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity"
+            >
+              <span
+                class:list={[link.name === 'x' ? 'i-simple-icons-x' : `i-mdi-${link.name}`, 'w-5 h-5 text-primary']}
+              />
+              <span class="text-sm">{link.name}</span>
+            </a>
+          ))
+        }
       </div>
     </section>
   </article>
