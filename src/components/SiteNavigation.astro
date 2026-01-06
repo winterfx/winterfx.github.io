@@ -7,9 +7,11 @@ const { translate: t } = Astro.locals
 const pathname = Astro.url.pathname
 
 // Posts 相关页面：/posts, /archive, /categories
-const isPostsSection = pathname.startsWith('/posts') || pathname.startsWith('/archive') || pathname.startsWith('/categories')
+const isPostsSection =
+  pathname.startsWith('/posts') || pathname.startsWith('/archive') || pathname.startsWith('/categories')
 // Resume、Podcasts、Projects 页面
-const isSimplePage = pathname.startsWith('/resume') || pathname.startsWith('/podcasts') || pathname.startsWith('/projects')
+const isSimplePage =
+  pathname.startsWith('/resume') || pathname.startsWith('/podcasts') || pathname.startsWith('/projects')
 
 const postsNavLinks = [
   { name: 'Home', href: '/' },
@@ -17,9 +19,7 @@ const postsNavLinks = [
   { name: 'Categories', href: '/categories' },
 ]
 
-const simpleNavLinks = [
-  { name: 'Home', href: '/' },
-]
+const simpleNavLinks = [{ name: 'Home', href: '/' }]
 
 let displayLinks = navLinks
 if (isPostsSection) {

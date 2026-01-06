@@ -2,11 +2,11 @@ import type { UserConfig } from '~/types'
 
 export const userConfig: Partial<UserConfig> = {
   site: {
-    title: '冬天的世界',
+    title: '冬天的牧场',
     subtitle: 'Personal Website',
     author: '',
     description: '软件工程师，热爱编程、开源和技术分享',
-    website: 'https://winterfx.github.io',
+    website: 'https://winterio.com.cn',
     navLinks: [
       {
         name: 'Home',
