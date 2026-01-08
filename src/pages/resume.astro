@@ -1,84 +1,142 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import { themeConfig } from '~/.config'
 ---
 
 <LayoutDefault>
   <article class="prose prose-lg max-w-none">
     <h1>Resume</h1>
+    <p class="text-lg opacity-80">Senior Software Engineer</p>
 
     <section class="mb-12">
-      <h2>关于我</h2>
-      <p>
-        你好！我是 {themeConfig.site.author}，一名热爱技术的软件工程师。
-        我专注于后端开发和系统架构，同时对前端技术和开源项目也有浓厚的兴趣。
-      </p>
-    </section>
-
-    <section class="mb-12">
-      <h2>技能</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
-        <div class="p-4 border border-primary/20 rounded">
-          <h3 class="font-bold mb-2">编程语言</h3>
-          <p class="text-sm opacity-70">Go, Python, TypeScript, JavaScript</p>
-        </div>
-        <div class="p-4 border border-primary/20 rounded">
-          <h3 class="font-bold mb-2">框架与工具</h3>
-          <p class="text-sm opacity-70">Gin, Echo, React, Vue, Docker, Kubernetes</p>
-        </div>
-        <div class="p-4 border border-primary/20 rounded">
-          <h3 class="font-bold mb-2">数据库</h3>
-          <p class="text-sm opacity-70">PostgreSQL, MySQL, Redis, MongoDB</p>
-        </div>
-        <div class="p-4 border border-primary/20 rounded">
-          <h3 class="font-bold mb-2">其他</h3>
-          <p class="text-sm opacity-70">Git, Linux, CI/CD, Cloud Services</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="mb-12">
-      <h2>工作经历</h2>
-      <div class="space-y-6 not-prose">
+      <h2>Education</h2>
+      <div class="space-y-4 not-prose">
         <div class="border-l-2 border-primary/30 pl-4">
-          <h3 class="font-bold">软件工程师</h3>
-          <p class="text-sm opacity-60">公司名称 · 2022 - 至今</p>
-          <ul class="mt-2 text-sm space-y-1 list-disc list-inside opacity-80">
-            <li>负责核心业务系统的开发和维护</li>
-            <li>参与系统架构设计和技术选型</li>
-            <li>优化系统性能，提升用户体验</li>
-          </ul>
+          <h3 class="font-bold">Master's Degree in Computer Technology</h3>
+          <p class="text-sm opacity-60">Nanjing University of Posts and Telecommunications · 2015–2018</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h3 class="font-bold">Bachelor's Degree in Communication Engineering</h3>
+          <p class="text-sm opacity-60">Nanjing University of Posts and Telecommunications · 2011–2015</p>
+        </div>
+      </div>
+      <p class="mt-4 text-sm opacity-70"><strong>Awards:</strong> National Inspirational Scholarship, First-Class College Scholarship</p>
+    </section>
+
+    <section class="mb-12">
+      <h2>Work Experience</h2>
+      <div class="space-y-8 not-prose">
+        <div>
+          <h3 class="font-bold text-xl mb-4">Trend Micro <span class="font-normal opacity-60">· 2018–2025</span></h3>
+
+          <div class="space-y-8">
+            <div class="border-l-2 border-primary/30 pl-4">
+              <h4 class="font-bold">Mobile Security as a Service</h4>
+              <p class="text-sm opacity-60 mb-3">2022–2025</p>
+              <p class="text-sm opacity-80 mb-4">
+                Integrated with Vision One (a unified security platform centered on XDR), providing unified mobile security management and threat defense capabilities. Built in-house MDM capabilities with deep integration of mainstream MDM vendor APIs, combining device management, compliance checks, mobile security scanning, real-time malware protection, and malicious behavior monitoring to deliver a cloud-based, configurable one-stop Mobile Threat Defense (MTD) solution.
+              </p>
+
+              <h5 class="font-semibold text-sm mb-2">Responsibilities</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80 mb-4">
+                <li>Led deep integration with Microsoft Intune for device management and security policies</li>
+                <li>Designed, developed, and maintained the in-house MDM system from technical research to core feature implementation</li>
+                <li>Implemented native device management capabilities based on Google Management API and Apple MDM Protocol</li>
+                <li>Designed and implemented a lightweight device enrollment mode for rapid integration with third-party MDMs</li>
+                <li>Monitored and continuously optimized core service SLOs</li>
+              </ul>
+
+              <h5 class="font-semibold text-sm mb-2">Achievements</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80">
+                <li>Served <strong>844</strong> Intune customers (35% of total platform customers) through deep Microsoft Intune integration</li>
+                <li>In-house MDM (MDD) became the most adopted enrollment mode at <strong>38%</strong>, serving <strong>934</strong> customers</li>
+                <li>Enabled rapid device onboarding across multiple MDM ecosystems through lightweight enrollment mode</li>
+                <li>Improved Latency &lt; 8s SLO coverage from <strong>P99.16 to P99.9</strong></li>
+              </ul>
+            </div>
+
+            <div class="border-l-2 border-primary/30 pl-4">
+              <h4 class="font-bold">Sandbox as a Service</h4>
+              <p class="text-sm opacity-60 mb-3">2020–2022</p>
+              <p class="text-sm opacity-80 mb-4">
+                Integrated with Vision One, providing malware detection services. Leveraged sandbox technology to perform automated analysis of files, URLs, and HTML/JavaScript, generating comprehensive detection reports including malware analysis, behavior analysis, network traffic analysis, and phishing detection.
+              </p>
+
+              <h5 class="font-semibold text-sm mb-2">Responsibilities</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80 mb-4">
+                <li>Designed and developed the URL and HTML Behavior Engine with Puppeteer and custom JavaScript hooks</li>
+                <li>Designed and implemented the Decision Engine based on YARA rules for multi-dimensional risk assessment</li>
+                <li>Built phishing detection capabilities with favicon similarity detection, domain analysis, and TLS validation</li>
+                <li>Optimized task scheduling and consumption strategies for large-scale asynchronous URL scanning</li>
+                <li>Optimized AKS resource usage and scaling strategies for resource-intensive rendering tasks</li>
+              </ul>
+
+              <h5 class="font-semibold text-sm mb-2">Achievements</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80">
+                <li>Built and deployed a URL risk assessment system based on real web behavior analysis (SaaS)</li>
+                <li>Enhanced phishing detection capabilities beyond traditional blacklist/whitelist detection</li>
+                <li>Significantly improved platform stability and reduced AKS resource waste</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="mb-12">
-      <h2>教育背景</h2>
-      <div class="not-prose border-l-2 border-primary/30 pl-4">
-        <h3 class="font-bold">计算机科学与技术</h3>
-        <p class="text-sm opacity-60">大学名称 · 本科</p>
+      <h2>Side Projects</h2>
+      <p class="text-sm opacity-60 mb-4">Some projects are open-sourced on GitHub</p>
+      <div class="space-y-4 not-prose">
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/ProWords" target="_blank" class="hover:text-primary">ProWords</a>
+            <span class="text-sm font-normal opacity-60 ml-2">387 stars</span>
+          </h4>
+          <p class="text-sm opacity-80">AI-powered English learning platform with vocabulary for CET-4/6, GRE, TOEFL, IELTS, and career customization</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/Podcast-Transcription" target="_blank" class="hover:text-primary">Podcast-Transcription</a>
+            <span class="text-sm font-normal opacity-60 ml-2">97 stars</span>
+          </h4>
+          <p class="text-sm opacity-80">Podcast transcription web app built with Next.js and Whisper API, featuring AI-powered summaries</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/tracecc" target="_blank" class="hover:text-primary">tracecc</a>
+          </h4>
+          <p class="text-sm opacity-80">AI API request tracing proxy with Web UI control and visual report generation</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/wgo" target="_blank" class="hover:text-primary">wgo</a>
+          </h4>
+          <p class="text-sm opacity-80">Go project scaffolding tool for quickly creating well-structured Go projects</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/kubetunnel" target="_blank" class="hover:text-primary">kubetunnel</a>
+          </h4>
+          <p class="text-sm opacity-80">Tunnel tool for accessing Azure PaaS services through AKS proxy pods</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/pt-cli" target="_blank" class="hover:text-primary">pt-cli</a>
+          </h4>
+          <p class="text-sm opacity-80">CLI tool for audio transcription powered by OpenAI Whisper</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">feedback-agentic</h4>
+          <p class="text-sm opacity-80">Multi-agent customer feedback processing system built on Claude Agent SDK for Trend Micro (Private)</p>
+        </div>
       </div>
     </section>
 
     <section>
-      <h2>联系方式</h2>
-      <p>如果你对我的经历感兴趣，欢迎通过以下方式联系我：</p>
-      <div class="flex gap-4 mt-4 not-prose">
-        {
-          themeConfig.site.socialLinks.map((link) => (
-            <a
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity"
-            >
-              <span
-                class:list={[link.name === 'x' ? 'i-simple-icons-x' : `i-mdi-${link.name}`, 'w-5 h-5 text-primary']}
-              />
-              <span class="text-sm">{link.name}</span>
-            </a>
-          ))
-        }
+      <h2>Skills</h2>
+      <div class="flex flex-wrap gap-2 not-prose">
+        {['Go', 'Kubernetes', 'Docker', 'Microservices', 'Node.js', 'Python', 'MongoDB', 'MySQL', 'Redis', 'AI Agent', 'Claude Code', 'Prompt Engineering', 'DevOps', 'CI/CD'].map((skill) => (
+          <span class="px-3 py-1 text-sm border border-primary/30 rounded-full opacity-80">{skill}</span>
+        ))}
       </div>
     </section>
   </article>
