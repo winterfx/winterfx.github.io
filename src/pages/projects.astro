@@ -4,10 +4,54 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
 // Define your projects here
 const projects = [
   {
+    name: 'ProWords',
+    description: 'AI-powered English learning platform with vocabulary for CET-4/6, GRE, TOEFL, IELTS, and career customization',
+    tech: ['AI', 'Web'],
+    github: 'https://github.com/winterfx/ProWords',
+    demo: '',
+    stars: 387,
+  },
+  {
+    name: 'Podcast-Transcription',
+    description: 'Podcast transcription web app built with Next.js and Whisper API, featuring AI-powered summaries',
+    tech: ['Next.js', 'Whisper', 'AI'],
+    github: 'https://github.com/winterfx/Podcast-Transcription',
+    demo: '',
+    stars: 97,
+  },
+  {
     name: 'GitToday',
     description: '基于 TUI 的 GitHub Trending 分析工具，使用 AI 解读项目亮点',
     tech: ['Go', 'Bubbletea', 'AI'],
     github: 'https://github.com/winterfx/gitoday',
+    demo: '',
+  },
+  {
+    name: 'tracecc',
+    description: 'AI API request tracing proxy with Web UI control and visual report generation',
+    tech: ['Go', 'Proxy'],
+    github: 'https://github.com/winterfx/tracecc',
+    demo: '',
+  },
+  {
+    name: 'wgo',
+    description: 'Go project scaffolding tool for quickly creating well-structured Go projects',
+    tech: ['Go', 'CLI'],
+    github: 'https://github.com/winterfx/wgo',
+    demo: '',
+  },
+  {
+    name: 'kubetunnel',
+    description: 'Tunnel tool for accessing Azure PaaS services through AKS proxy pods',
+    tech: ['Go', 'Kubernetes'],
+    github: 'https://github.com/winterfx/kubetunnel',
+    demo: '',
+  },
+  {
+    name: 'pt-cli',
+    description: 'CLI tool for audio transcription powered by OpenAI Whisper',
+    tech: ['Go', 'CLI', 'Whisper'],
+    github: 'https://github.com/winterfx/pt-cli',
     demo: '',
   },
   {
@@ -17,7 +61,6 @@ const projects = [
     github: 'https://github.com/winterfx/winterfx.github.io',
     demo: '',
   },
-  // Add more projects here
 ]
 ---
 
@@ -32,7 +75,10 @@ const projects = [
           <div class="p-6 border border-primary/20 rounded-lg hover:border-primary/40 transition-colors">
             <div class="flex items-start justify-between gap-4">
               <div class="flex-1">
-                <h3 class="text-xl font-bold">{project.name}</h3>
+                <h3 class="text-xl font-bold">
+                  {project.name}
+                  {project.stars && <span class="text-sm font-normal opacity-60 ml-2">{project.stars} stars</span>}
+                </h3>
                 <p class="mt-2 opacity-70">{project.description}</p>
                 <div class="flex flex-wrap gap-2 mt-3">
                   {project.tech.map((t) => (
