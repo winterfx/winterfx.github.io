@@ -36,11 +36,11 @@
       const enContent = document.querySelectorAll('[data-lang="en"]')
       const zhContent = document.querySelectorAll('[data-lang="zh"]')
 
-      enContent.forEach(el => {
-        (el as HTMLElement).style.display = lang === 'en' ? '' : 'none'
+      enContent.forEach((el) => {
+        ;(el as HTMLElement).style.display = lang === 'en' ? '' : 'none'
       })
-      zhContent.forEach(el => {
-        (el as HTMLElement).style.display = lang === 'zh' ? '' : 'none'
+      zhContent.forEach((el) => {
+        ;(el as HTMLElement).style.display = lang === 'zh' ? '' : 'none'
       })
     }
 
