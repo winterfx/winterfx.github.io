@@ -1,0 +1,65 @@
+---
+
+---
+
+<button
+  id="lang-toggle"
+  class="flex items-center gap-1.5 px-2.5 py-1.5 opacity-60 hover:opacity-100 transition-all text-sm rounded-md hover:bg-primary/10"
+  title="Switch language"
+>
+  <span class="i-mdi-translate w-4 h-4 text-primary"></span>
+  <span id="lang-label" class="font-medium">EN</span>
+</button>
+
+<script>
+  function setupLangToggle() {
+    const toggle = document.getElementById('lang-toggle')
+    const label = document.getElementById('lang-label')
+    const STORAGE_KEY = 'resume-lang'
+
+    function getCurrentLang() {
+      return localStorage.getItem(STORAGE_KEY) || 'en'
+    }
+
+    function setLang(lang: string) {
+      localStorage.setItem(STORAGE_KEY, lang)
+      updateDisplay(lang)
+    }
+
+    function updateDisplay(lang: string) {
+      // Update button label
+      if (label) {
+        label.textContent = lang === 'en' ? 'EN' : '中'
+      }
+
+      // Update content visibility
+      const enContent = document.querySelectorAll('[data-lang="en"]')
+      const zhContent = document.querySelectorAll('[data-lang="zh"]')
+
+      enContent.forEach(el => {
+        (el as HTMLElement).style.display = lang === 'en' ? '' : 'none'
+      })
+      zhContent.forEach(el => {
+        (el as HTMLElement).style.display = lang === 'zh' ? '' : 'none'
+      })
+    }
+
+    function toggleLang() {
+      const current = getCurrentLang()
+      const next = current === 'en' ? 'zh' : 'en'
+      setLang(next)
+    }
+
+    // Initial display
+    updateDisplay(getCurrentLang())
+
+    // Add click listener
+    toggle?.addEventListener('click', toggleLang)
+  }
+
+  // Run on initial load
+  setupLangToggle()
+
+  // Run after Swup page transitions
+  document.addEventListener('swup:contentReplaced', setupLangToggle)
+</script>

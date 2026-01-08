@@ -1,13 +1,22 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import LangToggle from '~/components/LangToggle.astro'
 ---
 
 <LayoutDefault>
   <article class="prose prose-lg max-w-none">
-    <h1>Resume</h1>
-    <p class="text-lg opacity-80">Senior Software Engineer</p>
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h1 class="!mb-0" data-lang="en">Resume</h1>
+        <h1 class="!mb-0" data-lang="zh">简历</h1>
+        <p class="text-lg opacity-80 !mt-2" data-lang="en">Senior Software Engineer</p>
+        <p class="text-lg opacity-80 !mt-2" data-lang="zh">高级软件工程师</p>
+      </div>
+      <LangToggle />
+    </div>
 
-    <section class="mb-12">
+    <!-- Education - English -->
+    <section class="mb-12" data-lang="en">
       <h2>Education</h2>
       <div class="space-y-4 not-prose">
         <div class="border-l-2 border-primary/30 pl-4">
@@ -22,7 +31,24 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       <p class="mt-4 text-sm opacity-70"><strong>Awards:</strong> National Inspirational Scholarship, First-Class College Scholarship</p>
     </section>
 
-    <section class="mb-12">
+    <!-- Education - Chinese -->
+    <section class="mb-12" data-lang="zh">
+      <h2>教育背景</h2>
+      <div class="space-y-4 not-prose">
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h3 class="font-bold">计算机技术硕士</h3>
+          <p class="text-sm opacity-60">南京邮电大学 · 2015–2018</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h3 class="font-bold">通信工程学士</h3>
+          <p class="text-sm opacity-60">南京邮电大学 · 2011–2015</p>
+        </div>
+      </div>
+      <p class="mt-4 text-sm opacity-70"><strong>荣誉奖项：</strong>国家励志奖学金、校一等奖学金</p>
+    </section>
+
+    <!-- Work Experience - English -->
+    <section class="mb-12" data-lang="en">
       <h2>Work Experience</h2>
       <div class="space-y-8 not-prose">
         <div>
@@ -82,7 +108,69 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </div>
     </section>
 
-    <section class="mb-12">
+    <!-- Work Experience - Chinese -->
+    <section class="mb-12" data-lang="zh">
+      <h2>工作经历</h2>
+      <div class="space-y-8 not-prose">
+        <div>
+          <h3 class="font-bold text-xl mb-4">趋势科技 <span class="font-normal opacity-60">· 2018–2025</span></h3>
+
+          <div class="space-y-8">
+            <div class="border-l-2 border-primary/30 pl-4">
+              <h4 class="font-bold">移动安全即服务</h4>
+              <p class="text-sm opacity-60 mb-3">2022–2025</p>
+              <p class="text-sm opacity-80 mb-4">
+                集成至 Vision One（以 XDR 为核心的统一安全平台），提供统一的移动安全管理和威胁防御能力。构建自研 MDM 能力，深度集成主流 MDM 厂商 API，结合设备管理、合规检查、移动安全扫描、实时恶意软件防护和恶意行为监控，交付云端可配置的一站式移动威胁防御（MTD）解决方案。
+              </p>
+
+              <h5 class="font-semibold text-sm mb-2">工作职责</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80 mb-4">
+                <li>主导与 Microsoft Intune 的深度集成，实现设备管理和安全策略</li>
+                <li>从技术调研到核心功能实现，设计、开发和维护自研 MDM 系统</li>
+                <li>基于 Google Management API 和 Apple MDM Protocol 实现原生设备管理能力</li>
+                <li>设计并实现轻量级设备注册模式，快速集成第三方 MDM</li>
+                <li>监控并持续优化核心服务 SLO</li>
+              </ul>
+
+              <h5 class="font-semibold text-sm mb-2">工作成果</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80">
+                <li>通过深度 Microsoft Intune 集成，服务 <strong>844</strong> 个 Intune 客户（占平台总客户的 35%）</li>
+                <li>自研 MDM（MDD）成为采用率最高的注册模式，占比 <strong>38%</strong>，服务 <strong>934</strong> 个客户</li>
+                <li>通过轻量级注册模式实现跨多个 MDM 生态系统的快速设备接入</li>
+                <li>将延迟 &lt; 8s 的 SLO 覆盖率从 <strong>P99.16 提升至 P99.9</strong></li>
+              </ul>
+            </div>
+
+            <div class="border-l-2 border-primary/30 pl-4">
+              <h4 class="font-bold">沙箱即服务</h4>
+              <p class="text-sm opacity-60 mb-3">2020–2022</p>
+              <p class="text-sm opacity-80 mb-4">
+                集成至 Vision One，提供恶意软件检测服务。利用沙箱技术对文件、URL 和 HTML/JavaScript 进行自动化分析，生成包含恶意软件分析、行为分析、网络流量分析和钓鱼检测的综合检测报告。
+              </p>
+
+              <h5 class="font-semibold text-sm mb-2">工作职责</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80 mb-4">
+                <li>使用 Puppeteer 和自定义 JavaScript 钩子设计开发 URL 和 HTML 行为引擎</li>
+                <li>基于 YARA 规则设计实现多维度风险评估的决策引擎</li>
+                <li>构建钓鱼检测能力，包含 favicon 相似度检测、域名分析和 TLS 验证</li>
+                <li>优化大规模异步 URL 扫描的任务调度和消费策略</li>
+                <li>优化资源密集型渲染任务的 AKS 资源使用和扩缩容策略</li>
+              </ul>
+
+              <h5 class="font-semibold text-sm mb-2">工作成果</h5>
+              <ul class="text-sm space-y-1 list-disc list-inside opacity-80">
+                <li>构建并部署基于真实网页行为分析的 URL 风险评估系统（SaaS）</li>
+                <li>增强钓鱼检测能力，超越传统黑白名单检测方式</li>
+                <li>显著提升平台稳定性并减少 AKS 资源浪费</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Side Projects - English -->
+    <section class="mb-12" data-lang="en">
       <h2>Side Projects</h2>
       <p class="text-sm opacity-60 mb-4">Some projects are open-sourced on GitHub</p>
       <div class="space-y-4 not-prose">
@@ -131,10 +219,71 @@ import LayoutDefault from '~/layouts/LayoutDefault.astro'
       </div>
     </section>
 
-    <section>
+    <!-- Side Projects - Chinese -->
+    <section class="mb-12" data-lang="zh">
+      <h2>个人项目</h2>
+      <p class="text-sm opacity-60 mb-4">部分项目已在 GitHub 开源</p>
+      <div class="space-y-4 not-prose">
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/ProWords" target="_blank" class="hover:text-primary">ProWords</a>
+            <span class="text-sm font-normal opacity-60 ml-2">387 stars</span>
+          </h4>
+          <p class="text-sm opacity-80">AI 驱动的英语学习平台，支持四六级、GRE、托福、雅思词汇及职业定制</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/Podcast-Transcription" target="_blank" class="hover:text-primary">Podcast-Transcription</a>
+            <span class="text-sm font-normal opacity-60 ml-2">97 stars</span>
+          </h4>
+          <p class="text-sm opacity-80">基于 Next.js 和 Whisper API 构建的播客转录 Web 应用，支持 AI 生成摘要</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/tracecc" target="_blank" class="hover:text-primary">tracecc</a>
+          </h4>
+          <p class="text-sm opacity-80">AI API 请求追踪代理，支持 Web UI 控制和可视化报告生成</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/wgo" target="_blank" class="hover:text-primary">wgo</a>
+          </h4>
+          <p class="text-sm opacity-80">Go 项目脚手架工具，快速创建结构良好的 Go 项目</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/kubetunnel" target="_blank" class="hover:text-primary">kubetunnel</a>
+          </h4>
+          <p class="text-sm opacity-80">通过 AKS 代理 Pod 访问 Azure PaaS 服务的隧道工具</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">
+            <a href="https://github.com/winterfx/pt-cli" target="_blank" class="hover:text-primary">pt-cli</a>
+          </h4>
+          <p class="text-sm opacity-80">基于 OpenAI Whisper 的音频转录命令行工具</p>
+        </div>
+        <div class="border-l-2 border-primary/30 pl-4">
+          <h4 class="font-bold">feedback-agentic</h4>
+          <p class="text-sm opacity-80">基于 Claude Agent SDK 为趋势科技构建的多智能体客户反馈处理系统（私有）</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills - English -->
+    <section data-lang="en">
       <h2>Skills</h2>
       <div class="flex flex-wrap gap-2 not-prose">
         {['Go', 'Kubernetes', 'Docker', 'Microservices', 'Node.js', 'Python', 'MongoDB', 'MySQL', 'Redis', 'AI Agent', 'Claude Code', 'Prompt Engineering', 'DevOps', 'CI/CD'].map((skill) => (
+          <span class="px-3 py-1 text-sm border border-primary/30 rounded-full opacity-80">{skill}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Skills - Chinese -->
+    <section data-lang="zh">
+      <h2>技能</h2>
+      <div class="flex flex-wrap gap-2 not-prose">
+        {['Go', 'Kubernetes', 'Docker', '微服务', 'Node.js', 'Python', 'MongoDB', 'MySQL', 'Redis', 'AI Agent', 'Claude Code', 'Prompt Engineering', 'DevOps', 'CI/CD'].map((skill) => (
           <span class="px-3 py-1 text-sm border border-primary/30 rounded-full opacity-80">{skill}</span>
         ))}
       </div>
