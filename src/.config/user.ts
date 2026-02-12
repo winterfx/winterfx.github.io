@@ -21,8 +21,8 @@ export const userConfig: Partial<UserConfig> = {
         href: '/projects',
       },
       {
-        name: 'Podcasts',
-        href: '/podcasts',
+        name: 'Thoughts',
+        href: '/thoughts',
       },
       {
         name: 'Resume',

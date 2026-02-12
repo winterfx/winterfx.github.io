@@ -8,7 +8,7 @@ export const LANGUAGES = {
     About: '关于',
     Links: '链接',
     Projects: '项目',
-    Podcasts: '播客',
+    Thoughts: '碎片想法',
     Resume: '简历',
 
     posted_at: '发布于',
@@ -35,7 +35,7 @@ export const LANGUAGES = {
     About: 'About',
     Links: 'Links',
     Projects: 'Projects',
-    Podcasts: 'Podcasts',
+    Thoughts: 'Thoughts',
     Resume: 'Resume',
 
     posted_at: 'Posted at',
@@ -62,7 +62,7 @@ export const LANGUAGES = {
     About: '關於',
     Links: '鏈接',
     Projects: '項目',
-    Podcasts: '播客',
+    Thoughts: '碎片想法',
     Resume: '履歷',
 
     posted_at: '發佈於',
@@ -89,7 +89,7 @@ export const LANGUAGES = {
     About: '私について',
     Links: 'リンク',
     Projects: 'プロジェクト',
-    Podcasts: 'ポッドキャスト',
+    Thoughts: 'つぶやき',
     Resume: '履歴書',
 
     posted_at: '投稿日',
@@ -116,7 +116,7 @@ export const LANGUAGES = {
     About: 'Info',
     Links: 'Link',
     Projects: 'Progetti',
-    Podcasts: 'Podcast',
+    Thoughts: 'Pensieri',
     Resume: 'Curriculum',
 
     posted_at: 'Pubblicato in',
