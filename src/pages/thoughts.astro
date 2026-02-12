@@ -1,6 +1,6 @@
 ---
 import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 
 const thoughts = (await getCollection('thoughts')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -20,14 +20,14 @@ function formatDate(date: Date) {
     <header class="mb-12">
       <h1 class="text-3xl font-bold mb-4">Thoughts</h1>
       <p class="text-lg opacity-60">
-        碎片想法、日志与未成形的观点。A stream of consciousness.
+        碎片想法
       </p>
     </header>
 
     <div class="relative border-l border-primary/20 ml-3 md:ml-6 space-y-12">
       {
         thoughts.map(async (thought) => {
-          const { Content } = await thought.render()
+          const { Content } = await render(thought)
           return (
             <div class="relative pl-8 md:pl-12 group">
               {/* Dot on timeline */}
@@ -48,7 +48,7 @@ function formatDate(date: Date) {
               {/* Tags */}
               {thought.data.tags && (
                 <div class="mt-3 flex gap-2">
-                  {thought.data.tags.map((tag) => (
+                  {thought.data.tags.map((tag: string) => (
                     <span class="text-xs px-2 py-0.5 rounded-full bg-primary/5 text-primary/70">
                       #{tag}
                     </span>

@@ -3,7 +3,5 @@ date: 2024-02-11
 tags: ["life", "coding"]
 ---
 
-Just finished setting up the new "Thoughts" section on my blog. It's a space for fleeting ideas, snippets, and daily logs.
-Unlike blog posts, these entries don't need titles or polish. They are just... thoughts.
-
-Looking forward to filling this timeline! 🚀
+刚搭好博客的「碎片想法」板块，用来记录一闪而过的灵感和日常片段。
+不需要标题，不需要打磨，写下来就好。
