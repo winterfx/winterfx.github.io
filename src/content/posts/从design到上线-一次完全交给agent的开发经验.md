@@ -3,7 +3,7 @@ title: 从design到上线，一次完全交给agent的开发经验
 pubDate: 2026-04-06
 categories: [AI]
 description: 记录第一次完全使用 Coding Agent 完成一个项目的全过程，从设计到上线
-draft: true
+draft: false
 ---
 ## 背景
 年初换到了新的team,接到了一个新的任务，我们产品的audit log本来是放到我们服务里面，存储在rds mysql保留一年，并有一个audit app来查询,现在支持更久的存储和查询，我们需要把audit log从我们这边转移到到xdl（一个data lake）中，所以整个任务分为3个部分。
